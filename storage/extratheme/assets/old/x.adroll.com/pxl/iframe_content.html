@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        const urlParams = new URLSearchParams(document.location.search),
+            adv = urlParams.get("advertisable"),
+            fpc = urlParams.get("adroll_fpc").split("-")[0],
+            origin = document.location.origin;
+        let url = origin + "/igs?advertisable=" + adv + "&fpc=" + fpc;
+
+        function joinInterestGroups(e = null) {
+            let n = null !== e ? "&cd_label=" + e : "";
+            var o = new XMLHttpRequest;
+            o.responseType = "json", o.open("GET", url + n, !0), o.onload = () => {
+                o.response.forEach((e => {
+                    navigator.joinAdInterestGroup(e, 2592e3)
+                }))
+            }, o.send(null)
+        }
+        "cookieDeprecationLabel" in navigator ? navigator.cookieDeprecationLabel.getValue().then(joinInterestGroups) : joinInterestGroups()
+    </script>
+</head>
+
+</html>

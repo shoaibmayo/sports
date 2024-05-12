@@ -202,15 +202,14 @@
        $('.empty-slip-message').hide();
        skeleton('show');
        let data = {
-         _token: '25rgF0nGExTWpD4HaYeQJCVM64TgZNmrcfqGcelF',
          id: $(this).data('option_id'),
          type: betType
        }
-       if (betType == singleBet) {
-         data.amount = sessionStorage.getItem('total_stake_amount');
-       }
-       $.get(`https://script.viserlab.com/betlab/bet/add-to-bet-slip`, data, function(response) {
-         if (response.error) {
+      //  if (betType == singleBet) {
+      //    data.amount = sessionStorage.getItem('total_stake_amount');
+      //  }
+       $.get('/add/odds/betslip', data, function(response) {
+         if (response.status == 'fail') {
            skeleton('hide');
            $('.empty-slip-message').show();
            notify('error', response.error);
@@ -218,7 +217,8 @@
            button.addClass('active');
            setTimeout(() => {
              skeleton('hide');
-             $('.betslip__list').append(response);
+             populateBetSlip(response.data);
+            //  $('.betslip__list').append(response);
              controlStakeInputFields();
              showTotalBetSlipCount(betSlipCount())
              betReturnAmount();
@@ -226,6 +226,86 @@
          }
        });
      });
+     $(document).on('click', '.removeFromSlip', function() {
+       removeBet($(this));
+     });
+
+     function removeBet(button) {
+       let id = button.data('option_id');
+       let data = {
+         id: button.data('option_id'),
+       }
+       $.get('/betslip/remove/bet/',data, function(response) {
+         if (response.status == 'success') {
+           $(document).find(`.oddBtn[data-option_id="${id}"]`).removeClass('active');
+           populateBetSlip(response.data);
+           showTotalBetSlipCount(betSlipCount())
+           betReturnAmount();
+         }
+       });
+     }
+     $('.deleteAll').on('click', function() {
+       let data = {
+         _token: '25rgF0nGExTWpD4HaYeQJCVM64TgZNmrcfqGcelF'
+       };
+       $.get('/betslip/bet/remove-all/', data, function(response) {
+         if (response.status == 'success') {
+           $('.betslip__list li').remove();
+           $('.oddBtn').removeClass('active');
+           showTotalBetSlipCount(betSlipCount());
+           betReturnAmount();
+         }
+       });
+     })
+    // populate betslip 
+    function populateBetSlip(ajaxResponse){
+      // Assuming ulElement is the reference to your <ul> element
+      var ulElement = document.querySelector('.list.betslip__list');
+
+      // Clear any existing content inside the ulElement
+      ulElement.innerHTML = '';
+
+      // Iterate over the ajaxResponse array and create <li> elements
+      ajaxResponse.forEach(function(data) {
+        // Create elements
+        var liElement = document.createElement('li');
+        liElement.setAttribute('data-option_id', data.option_id);
+        liElement.setAttribute('data-option_odds', data.option_odds);
+        
+        var buttonElement = document.createElement('button');
+        buttonElement.className = 'betslip__list-close text--danger removeFromSlip';
+        buttonElement.setAttribute('data-option_id', data.option_id);
+        buttonElement.type = 'button';
+        buttonElement.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        
+        var divContentElement = document.createElement('div');
+        divContentElement.className = 'betslip__list-content';
+        divContentElement.innerHTML = '<span class="betslip__list-team">' + data.team + '</span>' +
+                                      '<span class="betslip__list-question">' + data.question + '</span>' +
+                                      '<span class="betslip__list-match">' + data.match + '</span>' +
+                                      '<div class="betslip__list-text">' + data.option_odds + '</div>';
+        
+        var divRightElement = document.createElement('div');
+        divRightElement.className = 'betslip-right';
+        divRightElement.innerHTML = '<div class="betslip__list-ratio">' +
+                                      '<input class="investAmount" name="invest_amount" type="number" autocomplete="off" step="any" placeholder="0.0">' +
+                                      '<span>STAKE</span>' +
+                                    '</div>' +
+                                    '<small class="text--danger validation-msg"></small>' +
+                                    '<span class="betslip-return">Returns: $ <span class="bet-return-amount">0.00</span>' +
+                                    '</span>';
+        
+        // Append elements
+        liElement.appendChild(buttonElement);
+        liElement.appendChild(divContentElement);
+        liElement.appendChild(divRightElement);
+        ulElement.appendChild(liElement);
+      });
+    }
+    // populate betslip end
+
+
+
      $(document).on('input focusout', '.investAmount', function(event) {
        $('.total-validation-msg').text('');
        $('.total-stake-amount').text('');
@@ -276,27 +356,7 @@
          });
        }
      });
-     $(document).on('click', '.removeFromSlip', function() {
-       removeBet($(this));
-     });
-
-     function removeBet(button) {
-       $('.total-validation-msg').text('');
-       $('.total-stake-amount').text('');
-       $('.betslip__list li').find('.validation-msg').text('')
-       let id = button.data('option_id');
-       let data = {
-         _token: '25rgF0nGExTWpD4HaYeQJCVM64TgZNmrcfqGcelF'
-       };
-       $.post(`https://script.viserlab.com/betlab/bet/remove/${id}`, data, function(response) {
-         if (response.status == 'success') {
-           $(document).find(`.oddBtn[data-option_id="${id}"]`).removeClass('active');
-           $(document).find(`.removeFromSlip[data-option_id="${id}"]`).parent().remove();
-           showTotalBetSlipCount(betSlipCount())
-           betReturnAmount();
-         }
-       });
-     }
+    
      $('.betTypeBtn').on('click', function() {
        betType = Number($(this).data('type'));
        if ($(this).hasClass('active')) {
@@ -331,19 +391,7 @@
        controlStakeInputFields();
        betReturnAmount();
      });
-     $('.deleteAll').on('click', function() {
-       let data = {
-         _token: '25rgF0nGExTWpD4HaYeQJCVM64TgZNmrcfqGcelF'
-       };
-       $.post(`https://script.viserlab.com/betlab/bet/remove-all`, data, function(response) {
-         if (response.status == 'success') {
-           $('.betslip__list li').remove();
-           $('.oddBtn').removeClass('active');
-           showTotalBetSlipCount(betSlipCount());
-           betReturnAmount();
-         }
-       });
-     })
+    
      $('[name=total_invest]').on('input focusout', function(event) {
        $('.total-validation-msg').text('');
        $('.total-stake-amount').text('');

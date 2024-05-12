@@ -20,8 +20,8 @@ class GetSportsForPage extends Controller
             $lp = League::find($lid);
         }
         // $sports = Sport::with('leagues.matches')->get();
-        $sports = Sport::with(['leagues.matches', 'leagues.matches.team1', 'leagues.matches.team2'])->get();
-
+        $sports = Sport::with(['leagues.matches','leagues.matches.markets.marketdetails', 'leagues.matches.team1', 'leagues.matches.team2'])->get();
+        // dd($sports[0]->leagues[0]->matches[0]->markets[0]->marketdetails);
 
         // dd($sports[0]->leagues[0]->matches[0]);
 

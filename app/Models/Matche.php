@@ -23,7 +23,11 @@ class Matche extends Model
         return $this->belongsTo(League::class);
     }
     public function league()
-{
-    return $this->belongsTo(League::class, 'league_id');
-}
+    {
+        return $this->belongsTo(League::class, 'league_id');
+    }
+    public function markets()
+    {
+        return $this->hasMany(Market::class);
+    }
 }

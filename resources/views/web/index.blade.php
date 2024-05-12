@@ -83,36 +83,64 @@
                             </span>
                             <div class="custom-dropdown">
                               <div class="d-flex justify-content-between">
-                                <span class="custom-dropdown-selected">Full Time Result</span>
-                                <a href="https://script.viserlab.com/betlab/markets/icc-mens-cricket-world-cup-england-cricket-team-vs-comilla-victorians-2023-09-13-02-35-pm" class="text--small">Markets</a>
+                                <span class="custom-dropdown-selected">See More</span>
+                                <a href="{{ url('match/market/') . '/' . $match->id }}" class="text--small">Markets</a>
                               </div>
-                              <div class="custom-dropdown-list">
-                                <div class="custom-dropdown-list-item  disabled  " data-reference="8149">Full Time Result</div>
-                                <div class="custom-dropdown-list-item  " data-reference="19099">1st Ball Wicket in 1st Innings</div>
-                                <div class="custom-dropdown-list-item  " data-reference="19100">1st Ball Wicket in 2nd Innings</div>
-                                <div class="custom-dropdown-list-item  " data-reference="19101">1st Batting Team Will Win</div>
-                                <div class="text-center mt-1">
-                                  <a href="https://script.viserlab.com/betlab/markets/icc-mens-cricket-world-cup-england-cricket-team-vs-comilla-victorians-2023-09-13-02-35-pm?more=2" class="text--small"> +2 More</a>
-                                </div>
-                              </div>
+                             
                             </div>
+                            @php 
+                              $t1rate = 0;
+                              $t1id = 0;
+                              $t2rate = 0;
+                              $t2id =0;
+                              $drate =0;
+                              $did =0;
+                            @endphp
+                            @if(count($match->markets)>0)
+                              @foreach($match->markets as $market)
+                                @if($market->name=="Win Prediction")
+                                  @if(count($market->marketdetails)>0)
+                                    @php
+                                        
+                                      foreach($market->marketdetails as $md){
+                                         switch($md->name){
+                                          case $match->team1->name :
+                                            $t1rate = $md->rate;
+                                            $t1id = $md->id;
+                                            break;
+                                            case $match->team2->name :
+                                            $t2rate = $md->rate;
+                                            $t2id = $md->id;
+                                            break;
+                                            default:
+                                            $drate = $md->rate;
+                                            $did = $md->id;
+                                            break;  
+                                         }
+                                      }
+                                    @endphp
+                                  @endif
+                                @endif
+                              @endforeach
+                            @else
+                            @endif
                             <div class="option-odd-list">
                               <div class="option-odd-list__item">
                                 <div>
-                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24445">3.1 </button>
-                                  <span class="text--extra-small d-block text-center">ENG</span>
+                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="{{$t1id}}">{{$t1rate}} </button>
+                                  <span class="text--extra-small d-block text-center">{{$match->team1->name}}</span>
                                 </div>
                               </div>
                               <div class="option-odd-list__item">
                                 <div>
-                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24446">1.5 </button>
+                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="{{$did}}">{{$drate}} </button>
                                   <span class="text--extra-small d-block text-center">DRAW</span>
                                 </div>
                               </div>
                               <div class="option-odd-list__item">
                                 <div>
-                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24447">1.8 </button>
-                                  <span class="text--extra-small d-block text-center">CV</span>
+                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="{{$t2id}}">{{$t2rate}}</button>
+                                  <span class="text--extra-small d-block text-center">{{$match->team2->name}}</span>
                                 </div>
                               </div>
                             </div>
@@ -157,30 +185,11 @@
              <div class="simplebar-content-wrapper" role="region" aria-label="scrollable content" tabindex="0">
                <div class="simplebar-content">
                  <ul class="list betslip__list">
-                   <li data-option_id="21946" data-option_odds="2.38000000">
-                     <button class="betslip__list-close text--danger removeFromSlip" data-option_id="21946" type="button">
-                       <i class="fas fa-trash-alt"></i>
-                     </button>
-                     <div class="betslip__list-content">
-                       <span class="betslip__list-team">BAR vs CHL</span>
-                       <span class="betslip__list-question">Full Time Result</span>
-                       <span class="betslip__list-match">BAR</span>
-                       <div class="betslip__list-text">2.38</div>
-                     </div>
-                     <div class="betslip-right">
-                       <div class="betslip__list-ratio">
-                         <input class="investAmount" name="invest_amount" type="number" autocomplete="off" step="any" placeholder="0.0">
-                         <span>STAKE</span>
-                       </div>
-                       <small class="text--danger validation-msg"></small>
-                       <span class="betslip-return">Returns: $ <span class="bet-return-amount">0.00</span>
-                       </span>
-                     </div>
-                   </li>
+                   
                  </ul>
                  <span class="empty-slip-message">
                    <span class="d-flex justify-content-center align-items-center">
-                     <img src="https://script.viserlab.com/betlab/assets/templates/basic/images/empty_list.png" alt="image">
+                     <img src="{{asset('/images/empty_list.png')}}" alt="image">
                    </span> Your selections will be displayed here </span>
                </div>
              </div>

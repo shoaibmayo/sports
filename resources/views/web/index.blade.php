@@ -244,17 +244,17 @@
          <div class="col-12">
            <ul class="app-nav__menu list list--row justify-content-between align-items-center">
              <li>
-               <a class="app-nav__menu-link active" href="https://script.viserlab.com/betlab">
+               <a class="app-nav__menu-link active" href="#">
                  <span class="app-nav__menu-icon">
-                   <img src="https://script.viserlab.com/betlab/assets/templates/basic/images/bet-now.png" alt="image">
+                   <img src="" alt="image">
                  </span>
                  <span class="app-nav__menu-text"> Bet Now </span>
                </a>
              </li>
              <li>
-               <a class="app-nav__menu-link" href="https://script.viserlab.com/betlab/user/my-bets">
+               <a class="app-nav__menu-link" href="#">
                  <span class="app-nav__menu-icon">
-                   <img src="https://script.viserlab.com/betlab/assets/templates/basic/images/my_bets.png" alt="image">
+                   <img src="" alt="image">
                  </span>
                  <span class="app-nav__menu-text"> My Bets </span>
                </a>
@@ -288,7 +288,7 @@
      <div class="app-nav__drawer" data-simplebar>
        <ul class="list app-nav__drawer-list">
          <li>
-           <a class="app-nav__drawer-link" href="https://script.viserlab.com/betlab">
+           <a class="app-nav__drawer-link" href="#">
              <span class="app-nav__drawer-icon">
                <i class="las la-home"></i>
              </span>
@@ -296,7 +296,7 @@
            </a>
          </li>
          <li>
-           <a class="app-nav__drawer-link" href="https://script.viserlab.com/betlab/news">
+           <a class="app-nav__drawer-link" href="#">
              <span class="app-nav__drawer-icon">
                <i class="las la-newspaper"></i>
              </span>
@@ -304,7 +304,7 @@
            </a>
          </li>
          <li>
-           <a class="app-nav__drawer-link" href="https://script.viserlab.com/betlab/contact">
+           <a class="app-nav__drawer-link" href="#">
              <span class="app-nav__drawer-icon">
                <i class="las la-headset"></i>
              </span>

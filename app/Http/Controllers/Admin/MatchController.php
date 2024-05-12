@@ -16,6 +16,7 @@ class MatchController extends Controller
     public function index()
     {
         $matches = Matche::all();
+        // dd($matches);
         return view('admin.matches.index', compact('matches'));
     }
 

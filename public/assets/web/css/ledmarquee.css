@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@400;600;700&display=swap");
+#sectionsabi {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center;
+	align-items: center; */
+	/* min-height: 100vh; */
+	font-size: 1.2em;
+	background: #44425a;
+	color: #fff;
+	text-transform: uppercase;
+	/* gap: 30px; */
+}
+
+
+#sexyfontstyle{
+    
+    
+   
+    margin: auto;
+	letter-spacing: 0.0015em;
+	font-size: 2em;
+	text-shadow: 0 1px #8da1ff, -1px 0 #c0cbff, -1px 2px #8da1ff, -2px 1px #c0cbff,
+		-2px 3px #8da1ff, -3px 2px #c0cbff, -3px 4px #8da1ff, -4px 3px #c0cbff,
+		-4px 5px #8da1ff, -5px 4px #c0cbff, -5px 6px #8da1ff, -6px 5px #c0cbff,
+		-6px 7px #8da1ff, -7px 6px #c0cbff, -7px 8px #8da1ff, -8px 7px #c0cbff;
+	text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    #sectionsabi {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center;
+        align-items: center; */
+        /* min-height: 100vh; */
+        font-size: .5em;
+        background: #44425a;
+        color: #fff;
+        text-transform: uppercase;
+        /* gap: 30px; */
+    }
+    #sabimaindiv{
+        padding-top: 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    #sexyfontstyle{
+    
+    
+   
+        margin: auto;
+        letter-spacing: 0.0015em;
+        font-size: .8em;
+        text-shadow: 0 1px #8da1ff, -1px 0 #c0cbff, -1px 2px #8da1ff, -2px 1px #c0cbff,
+            -2px 3px #8da1ff, -3px 2px #c0cbff, -3px 4px #8da1ff, -4px 3px #c0cbff,
+            -4px 5px #8da1ff, -5px 4px #c0cbff, -5px 6px #8da1ff, -6px 5px #c0cbff,
+            -6px 7px #8da1ff, -7px 6px #c0cbff, -7px 8px #8da1ff, -8px 7px #c0cbff;
+        text-align: center;
+    }
+    .tabletr{
+        font-size: .5em !important;
+    }
+
+  }
+
+#sabih1 {
+	font-size: 1.5em;
+	text-decoration: underline;
+	@media (max-width: 768px) {
+		font-size: 1.3em;
+	}
+}
+
+.text-shadow-sabi {
+	font-style: italic;
+	text-transform: uppercase;
+	color: #fd7e14;
+	-webkit-text-stroke: #fd7e14;
+	-webkit-text-stroke-width: 1px;
+	text-shadow: 2px 2px 10px rgb(255, 115, 0);
+	transition: all 0.5s ease-in-out;
+	text-align: center;
+	letter-spacing: 0.2em;
+	animation: flicker 0.5s ease-in-out infinite alternate;
+
+	
+}
+
+.tags small {
+	@media (max-width: 768px) {
+		font-size: 0.5em;
+	}
+}
+
+
+
+#marquee1 {
+	overflow-x: -webkit-marquee;
+	-webkit-marquee-style: scroll;
+	-webkit-marquee-speed: fast !important;
+}
+
+
+.demo10{padding:30px}
+.pricingTable10{text-align:center}
+.pricingTable10 .pricingTable-header{padding:30px 0;background:#4d4d4d;position:relative;transition:all .3s ease 0s}
+.pricingTable10:hover .pricingTable-header{background:#09b2c6}
+.pricingTable10 .pricingTable-header:after,.pricingTable10 .pricingTable-header:before{content:"";width:16px;height:16px;border-radius:50%;border:1px solid #d9d9d8;position:absolute;bottom:12px}
+.pricingTable10 .pricingTable-header:before{left:40px}
+.pricingTable10 .pricingTable-header:after{right:40px}
+.pricingTable10 .heading{font-size:20px;color:#fff;text-transform:uppercase;letter-spacing:2px;margin-top:0}
+.pricingTable10 .price-value{display:inline-block;position:relative;font-size:55px;font-weight:700;color:#09b1c5;transition:all .3s ease 0s}
+.pricingTable10:hover .price-value{color:#fff}
+.pricingTable10 .currency{font-size:30px;font-weight:700;position:absolute;top:6px;left:-19px}
+.pricingTable10 .month{font-size:16px;color:#fff;position:absolute;bottom:15px;right:-30px;text-transform:uppercase}
+.pricingTable10 .pricing-content{padding-top:50px;background:#fff;position:relative}
+.pricingTable10 .pricing-content:after,.pricingTable10 .pricing-content:before{content:"";width:16px;height:16px;border-radius:50%;border:1px solid #7c7c7c;position:absolute;top:12px}
+.pricingTable10 .pricing-content:before{left:40px}
+.pricingTable10 .pricing-content:after{right:40px}
+.pricingTable10 .pricing-content ul{padding:0 20px;margin:0;list-style:none}
+.pricingTable10 .pricing-content ul:after,.pricingTable10 .pricing-content ul:before{content:"";width:8px;height:46px;border-radius:3px;background:linear-gradient(to bottom,#818282 50%,#727373 50%);position:absolute;top:-22px;z-index:1;box-shadow:0 0 5px #707070;transition:all .3s ease 0s}
+.pricingTable10:hover .pricing-content ul:after,.pricingTable10:hover .pricing-content ul:before{background:linear-gradient(to bottom,#40c4db 50%,#34bacc 50%)}
+.pricingTable10 .pricing-content ul:before{left:44px}
+.pricingTable10 .pricing-content ul:after{right:44px}
+.pricingTable10 .pricing-content ul li{font-size:15px;font-weight:700;color:#777473;padding:10px 0;border-bottom:1px solid #d9d9d8}
+.pricingTable10 .pricing-content ul li:last-child{border-bottom:none}
+.pricingTable10 .read{display:inline-block;font-size:16px;color:#fff;text-transform:uppercase;background:#d9d9d8;padding:8px 25px;margin:30px 0;transition:all .3s ease 0s}
+.pricingTable10 .read:hover{text-decoration:none}
+.pricingTable10:hover .read{background:#09b1c5}
+@media screen and (max-width:990px){.pricingTable10{margin-bottom:25px}
+}
+
+
+
+.containeroverlay {
+	
+	
+	position: relative;
+	margin: 30px;
+  }
+  
+  .boxoverlay {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.7;
+	background: #0057e3;
+  }
+  
+  .overlay {
+	z-index: 9;
+	margin: 30px;
+	background: #009938;
+  }

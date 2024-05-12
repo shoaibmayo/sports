@@ -43,12 +43,15 @@ class LeagueController extends Controller
     
         // Handle image upload
         if ($request->hasFile('img')) {
-            $image = $request->file('img');
-            $imageName = $image->getClientOriginalName();
-            $imagePath = $image->storeAs('leagues', $imageName, 'public');
+            $imageName = time().'.'.$request->img->extension();
+            $request->img->move(public_path('images'), $imageName);
+            $imagePath = '/images/'.$imageName;
+            // $image = $request->file('img');
+            // $imageName = $image->getClientOriginalName();
+            // $imagePath = $image->storeAs('leagues', $imageName, 'public');
             $leagueData['img'] = $imagePath;
         }
-    
+        
         League::create($leagueData);
     
         return redirect()->route('leagues.index')->with('success', 'League created successfully.');
@@ -89,9 +92,12 @@ class LeagueController extends Controller
 
         // Handle image upload
         if ($request->hasFile('img')) {
-            $image = $request->file('img');
-            $imageName = $image->getClientOriginalName();
-            $imagePath = $image->storeAs('leagues', $imageName, 'public');
+            $imageName = time().'.'.$request->img->extension();
+            $request->img->move(public_path('images'), $imageName);
+            $imagePath = '/images/'.$imageName;
+            // $image = $request->file('img');
+            // $imageName = $image->getClientOriginalName();
+            // $imagePath = $image->storeAs('leagues', $imageName, 'public');
             $leagueData['img'] = $imagePath;
         }
 

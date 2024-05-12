@@ -1,4 +1,4 @@
-@extends('web.layouts.master')
+@extends('layouts.simple.master')
 
 @section('content')
 <div class="container">
@@ -24,7 +24,7 @@
                 <td>{{ $match->time }}</td>
                 <td>{{ $match->team1->name }}</td>
                 <td>{{ $match->team2->name }}</td>
-                <td>{{ $match->league->s_name }}</td>
+                <td>{{ $match->league->s_name ?? 'N/A' }}</td>
                 <td>
                     <a href="{{ route('matches.edit', $match->id) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('matches.destroy', $match->id) }}" method="POST" style="display: inline;">

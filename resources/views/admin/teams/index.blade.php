@@ -1,4 +1,4 @@
-@extends('web.layouts.master')
+@extends('layouts.simple.master')
 
 @section('content')
 <div class="container">
@@ -20,7 +20,8 @@
                 <td>{{ $team->id }}</td>
                 <td>{{ $team->name }}</td>
                 <td>{{ $team->league->s_name }}</td>
-                <td>{{ $team->img }}</td>
+                <td><img src="{{ asset( $team->img) }}" width="30px" height="30px" alt=""></td>
+            
                 <td>
                     <a href="{{ route('teams.edit', $team->id) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('teams.destroy', $team->id) }}" method="POST" style="display: inline;">

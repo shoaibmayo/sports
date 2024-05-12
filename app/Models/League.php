@@ -14,4 +14,7 @@ class League extends Model
     {
         return $this->belongsTo(Sport::class);
     }
+    public function matches(){
+        return $this->hasMany(Matche::class);
+    }
 }

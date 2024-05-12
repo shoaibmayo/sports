@@ -26,73 +26,111 @@
          <div class="col-12">
            <div class="betting-body">
              <div class="row g-3">
-               <div class="col-12">
-                 <div class="league-title">
-                   <span class="league-title__flag">
-                     <img class="league-title__flag-img" src="https://script.viserlab.com/betlab/assets/images/league/6496db741b7721687608180.png" alt="image">
-                   </span>
-                   <span class="league-title__name"> ICC Mens Cricket World Cup </span>
-                 </div>
-               </div>
-               <div class="col-sm-6 col-lg-6 col-md-4 col-xl-4 col-xxl-3 col-msm-6">
-                 <div class="sports-card position-relative">
-                   <span class="sports-card__head">
-                     <span class="sports-card__team">
-                       <span class="sports-card__team-flag">
-                         <img class="sports-card__team-flag-img" src="https://script.viserlab.com/betlab/assets/images/team/63e4d92adea6f1675942186.png" alt="image">
-                       </span>
-                       <span class="sports-card__team-name"> ENG </span>
-                     </span>
-                     <span class="sports-card__info text-center">
-                       <span class="sports-card__stream">
-                         <i class="fas fa-play text--danger"></i>
-                       </span>
-                       <span class="sports-card__info-text">Live Now</span>
-                     </span>
-                     <span class="sports-card__team">
-                       <span class="sports-card__team-flag">
-                         <img class="sports-card__team-flag-img" src="https://script.viserlab.com/betlab/assets/images/team/63e4f64c10e711675949644.png" alt="image">
-                       </span>
-                       <span class="sports-card__team-name"> CV </span>
-                     </span>
-                   </span>
-                   <div class="custom-dropdown">
-                     <div class="d-flex justify-content-between">
-                       <span class="custom-dropdown-selected">Full Time Result</span>
-                       <a href="https://script.viserlab.com/betlab/markets/icc-mens-cricket-world-cup-england-cricket-team-vs-comilla-victorians-2023-09-13-02-35-pm" class="text--small">Markets</a>
-                     </div>
-                     <div class="custom-dropdown-list">
-                       <div class="custom-dropdown-list-item  disabled  " data-reference="8149">Full Time Result</div>
-                       <div class="custom-dropdown-list-item  " data-reference="19099">1st Ball Wicket in 1st Innings</div>
-                       <div class="custom-dropdown-list-item  " data-reference="19100">1st Ball Wicket in 2nd Innings</div>
-                       <div class="custom-dropdown-list-item  " data-reference="19101">1st Batting Team Will Win</div>
-                       <div class="text-center mt-1">
-                         <a href="https://script.viserlab.com/betlab/markets/icc-mens-cricket-world-cup-england-cricket-team-vs-comilla-victorians-2023-09-13-02-35-pm?more=2" class="text--small"> +2 More</a>
-                       </div>
-                     </div>
-                   </div>
-                   <div class="option-odd-list">
-                     <div class="option-odd-list__item">
-                       <div>
-                         <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24445">3.1 </button>
-                         <span class="text--extra-small d-block text-center">ENG</span>
-                       </div>
-                     </div>
-                     <div class="option-odd-list__item">
-                       <div>
-                         <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24446">1.5 </button>
-                         <span class="text--extra-small d-block text-center">DRAW</span>
-                       </div>
-                     </div>
-                     <div class="option-odd-list__item">
-                       <div>
-                         <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24447">1.8 </button>
-                         <span class="text--extra-small d-block text-center">CV</span>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
+              @if(isset($lp))
+                @foreach($sports as $sport)
+                  @if($sport->id == $sp->id)
+                    @foreach($sport->leagues as $league)
+                      @if($league->id == $lp->id)
+                      <div class="col-12">
+                        <div class="league-title">
+                          <span class="league-title__flag">
+                            <img class="league-title__flag-img" src="{{$league->img}}" alt="image">
+                          </span>
+                          <span class="league-title__name"> {{$league->long_name}} </span>
+                        </div>
+                      </div>
+                      @if(count($league->matches)>0)
+                        @foreach($league->matches as $match)
+                        <div class="col-sm-6 col-lg-6 col-md-4 col-xl-4 col-xxl-3 col-msm-6">
+                          <div class="sports-card position-relative">
+                            <span class="sports-card__head">
+                              <span class="sports-card__team">
+                                <span class="sports-card__team-flag">
+                                  <img class="sports-card__team-flag-img" src="{{$match->team1->img}}" alt="image">
+                                </span>
+                                <span class="sports-card__team-name"> {{$match->team1->name}}</span>
+                              </span>
+                              @php
+                                  // Convert date and time strings to timestamps
+                                  $matchDateTime = strtotime($match->date . ' ' . $match->time);
+                                  $currentDateTime = time();
+
+                                  // Compare timestamps
+                                  $isFutureMatch = $matchDateTime >= $currentDateTime;
+                              @endphp
+                              @if ($isFutureMatch)
+                              <span class="sports-card__info text-center">
+                                <span class="sports-card__stream">
+                                  <i class="fas fa-play text--danger"></i>
+                                </span>
+                                <span class="sports-card__info-text">Live Now</span>
+                              </span>
+                              @else
+                              <span class="sports-card__info text-center">
+                                <span class="sports-card__stream">
+                                  <i class="fas fa-play-circle"></i>
+                                </span>
+                                <span class="sports-card__info-text">Completed</span>
+                              </span>
+                              @endif
+                              
+                              <span class="sports-card__team">
+                                <span class="sports-card__team-flag">
+                                  <img class="sports-card__team-flag-img" src="{{$match->team2->img}}" alt="image">
+                                </span>
+                                <span class="sports-card__team-name"> {{$match->team2->name}} </span>
+                              </span>
+                            </span>
+                            <div class="custom-dropdown">
+                              <div class="d-flex justify-content-between">
+                                <span class="custom-dropdown-selected">Full Time Result</span>
+                                <a href="https://script.viserlab.com/betlab/markets/icc-mens-cricket-world-cup-england-cricket-team-vs-comilla-victorians-2023-09-13-02-35-pm" class="text--small">Markets</a>
+                              </div>
+                              <div class="custom-dropdown-list">
+                                <div class="custom-dropdown-list-item  disabled  " data-reference="8149">Full Time Result</div>
+                                <div class="custom-dropdown-list-item  " data-reference="19099">1st Ball Wicket in 1st Innings</div>
+                                <div class="custom-dropdown-list-item  " data-reference="19100">1st Ball Wicket in 2nd Innings</div>
+                                <div class="custom-dropdown-list-item  " data-reference="19101">1st Batting Team Will Win</div>
+                                <div class="text-center mt-1">
+                                  <a href="https://script.viserlab.com/betlab/markets/icc-mens-cricket-world-cup-england-cricket-team-vs-comilla-victorians-2023-09-13-02-35-pm?more=2" class="text--small"> +2 More</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="option-odd-list">
+                              <div class="option-odd-list__item">
+                                <div>
+                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24445">3.1 </button>
+                                  <span class="text--extra-small d-block text-center">ENG</span>
+                                </div>
+                              </div>
+                              <div class="option-odd-list__item">
+                                <div>
+                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24446">1.5 </button>
+                                  <span class="text--extra-small d-block text-center">DRAW</span>
+                                </div>
+                              </div>
+                              <div class="option-odd-list__item">
+                                <div>
+                                  <button class="btn btn-sm btn-light text--small border oddBtn  " data-option_id="24447">1.8 </button>
+                                  <span class="text--extra-small d-block text-center">CV</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                      @endif
+                      @endif
+                    @endforeach
+                  @endif
+                @endforeach
+              @endif
+
+
+               
+               
+               
+
              </div>
            </div>
          </div>

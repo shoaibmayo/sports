@@ -42,9 +42,12 @@ class TeamController extends Controller
         $teamData = $request->only('name', 'league_id');
 
         if ($request->hasFile('img')) {
-            $image = $request->file('img');
-            $imageName = $image->getClientOriginalName();
-            $imagePath = $image->storeAs('teams', $imageName, 'public');
+            $imageName = time().'.'.$request->img->extension();
+            $request->img->move(public_path('images/teams'), $imageName);
+            $imagePath = '/images/teams/'.$imageName;
+            // $image = $request->file('img');
+            // $imageName = $image->getClientOriginalName();
+            // $imagePath = $image->storeAs('leagues', $imageName, 'public');
             $teamData['img'] = $imagePath;
         }
 
@@ -87,9 +90,12 @@ class TeamController extends Controller
         $teamData = $request->only('name', 'league_id');
 
         if ($request->hasFile('img')) {
-            $image = $request->file('img');
-            $imageName = $image->getClientOriginalName();
-            $imagePath = $image->storeAs('teams', $imageName, 'public');
+            $imageName = time().'.'.$request->img->extension();
+            $request->img->move(public_path('images/teams'), $imageName);
+            $imagePath = '/images/teams/'.$imageName;
+            // $image = $request->file('img');
+            // $imageName = $image->getClientOriginalName();
+            // $imagePath = $image->storeAs('leagues', $imageName, 'public');
             $teamData['img'] = $imagePath;
         }
 

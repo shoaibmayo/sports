@@ -15,7 +15,7 @@
 						<div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
 					</li>
 					
-					
+					<!-- adding new comment -->
 					<li class="sidebar-list">
 						<a class="sidebar-link sidebar-title {{ Route::currentRouteName()=='sports.index' ? 'active' : '' }}" href="{{url('/sports')}}"><i data-feather="home"></i><span class="lan-3">sports</span>	
 						</a>

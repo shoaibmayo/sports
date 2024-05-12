@@ -34,7 +34,7 @@
                       <div class="col-12">
                         <div class="league-title">
                           <span class="league-title__flag">
-                            <img class="league-title__flag-img" src="{{$league->img}}" alt="image">
+                            <img class="league-title__flag-img" src="{{asset($league->img)}}" alt="image">
                           </span>
                           <span class="league-title__name"> {{$league->long_name}} </span>
                         </div>
@@ -46,7 +46,7 @@
                             <span class="sports-card__head">
                               <span class="sports-card__team">
                                 <span class="sports-card__team-flag">
-                                  <img class="sports-card__team-flag-img" src="{{$match->team1->img}}" alt="image">
+                                  <img class="sports-card__team-flag-img" src="{{asset($match->team1->img)}}" alt="image">
                                 </span>
                                 <span class="sports-card__team-name"> {{$match->team1->name}}</span>
                               </span>
@@ -76,7 +76,7 @@
                               
                               <span class="sports-card__team">
                                 <span class="sports-card__team-flag">
-                                  <img class="sports-card__team-flag-img" src="{{$match->team2->img}}" alt="image">
+                                  <img class="sports-card__team-flag-img" src="{{asset($match->team2->img)}}" alt="image">
                                 </span>
                                 <span class="sports-card__team-name"> {{$match->team2->name}} </span>
                               </span>

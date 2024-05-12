@@ -101,7 +101,7 @@
                   <li>
                     <a class="sub-category-drawer__link  {{ ($lp->id == $league->id) ? 'active' : '' }}" href="{{ url('/fmain/' . $sport->id.'/'.$league->id) }}">
                       <span class="sub-category-drawer__flag">
-                        <img class="sub-category-drawer__flag-img" src="{{$league->img}}" alt="image">
+                        <img class="sub-category-drawer__flag-img" src="{{asset($league->img)}}" alt="image">
                       </span>
                       <span class="sub-category-drawer__text" title="{{$league->long_name}}"> {{$league->s_name}} </span>
                     </a>

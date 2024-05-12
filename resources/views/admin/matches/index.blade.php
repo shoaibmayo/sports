@@ -14,6 +14,7 @@
                 <th>Team 2</th>
                 <th>League</th>
                 <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    <a href="{{ route('markets.index', $match->id) }}" class="btn btn-sm btn-success">Add Markets</a>
                 </td>
             </tr>
             @endforeach

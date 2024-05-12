@@ -22,7 +22,7 @@
                 <td>{{ $league->sport->name }}</td>
                 <td>{{ $league->s_name }}</td>
                 <td>{{ $league->long_name }}</td>
-                <td><img src="{{ asset( $league->img) }}" width="30px" height="30px" alt=""></td>
+                <td><img src="{{ asset($league->img) }}" width="30px" height="30px" alt=""></td>
                 <td>
                     <a href="{{ route('leagues.edit', $league->id) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('leagues.destroy', $league->id) }}" method="POST" style="display: inline;">
